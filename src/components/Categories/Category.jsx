@@ -18,7 +18,7 @@ function Category({ selectedTimeframe }) {
     "hsl(145, 58%, 55%)",
     "hsl(264, 64%, 52%)",
     "hsl(43, 84%, 65%)"
-  ]
+  ];
 
   const categoryIcons = [
     workIcon,
@@ -27,7 +27,9 @@ function Category({ selectedTimeframe }) {
     exerciseIcon,
     socialIcon,
     selfCareIcon
-  ]
+  ];
+
+  const iconPosition = ["60%", "60%", "60%", "70%", "50%", "65%"];
 
   return(
 
@@ -38,26 +40,34 @@ function Category({ selectedTimeframe }) {
 
           let currTime;
           let prevTime;
+          let timeUnit;
 
           switch(selectedTimeframe) {
             case "daily":
               currTime = timeframes.daily.current;
               prevTime = timeframes.daily.previous;
+              timeUnit = "Yesterday - ";
               break;
             case "weekly":
               currTime = timeframes.weekly.current;
               prevTime = timeframes.weekly.previous;
+              timeUnit = "Last Week - ";
               break;
             case "monthly":
               currTime = timeframes.monthly.current;
               prevTime = timeframes.monthly.previous;
+              timeUnit = "Last Month - ";
               break;
           }
 
           return(
             <article className={styles.statsCard} key={title} style={{ backgroundColor: categoryColors[index] }}>
 
-              <img className={styles.categoryIcon} src={categoryIcons[index]} alt="category icon" />
+              <img 
+                className={styles.categoryIcon} 
+                src={categoryIcons[index]} 
+                alt="category icon"
+                style={{ bottom: iconPosition[index] }} />
               
               <div className={styles.statsContainer}>
                 <div className={styles.currentStats}>
@@ -67,7 +77,7 @@ function Category({ selectedTimeframe }) {
 
                 <div className={styles.prevStats}>
                   <img src={dottedMenu} alt="3 dots menu" />
-                  <p className={styles.prevTime}>{"Yesterday - " + prevTime + "hrs"}</p>
+                  <p className={styles.prevTime}>{timeUnit + prevTime + "hrs"}</p>
                 </div>
               </div>
             

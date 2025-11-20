@@ -17,7 +17,6 @@
 
 .categoryIcon {
   position: absolute;
-  bottom: 65%;
   z-index: 0;
   align-self: flex-end;
   margin-inline-end: 1rem;
