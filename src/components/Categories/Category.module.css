@@ -1,0 +1,59 @@
+.cardsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.statsCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-block-start: 2.3rem;
+  border-radius: var(--corners) var(--corners) 1.1rem 1.1rem;
+  background-color: var(--orange-300);
+  overflow: hidden;
+}
+
+.categoryIcon {
+  position: absolute;
+  bottom: 65%;
+  z-index: 0;
+  align-self: flex-end;
+  margin-inline-end: 1rem;
+  width: 4.5rem;
+}
+
+.statsContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+  padding: 2rem;
+  border-radius: var(--corners);
+  background-color: var(--navy-900);
+}
+
+.prevStats {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.5rem;
+  height: 100%;
+}
+
+.category {
+  font-size: 1.125rem;
+  margin-block-end: 0.5rem;
+  color: var(--white);
+}
+
+.currentTime {
+  font-size: 1.8rem;
+  color: var(--white);
+}
+
+.prevTime {
+  font-size: 0.8rem;
+}

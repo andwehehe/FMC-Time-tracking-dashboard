@@ -1,0 +1,51 @@
+.profileCard { 
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--corners);
+  background-color: var(--navy-900);
+} 
+
+.profilePic {
+  width: 4rem;
+  border: solid 0.2rem var(--white);
+  border-radius: 50%;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: var(--corners);
+  background-color: var(--purple-600);
+}
+
+.username {
+  font-size: 0.8rem;
+  color: var(--navy-200);
+  width: 100%;
+}
+
+.username span {
+  font-size: 1.4rem;
+}
+
+.navList {
+  color: var(--navy-200);
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem;
+}
+
+li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+input[type=radio] {
+  display: none;
+}
+label:has(input[type=radio]:checked) {
+  color: var(--white);
+}
