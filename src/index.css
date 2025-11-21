@@ -56,13 +56,32 @@
 }
 
 body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
   background-color: var(--navy-950);
 }
 
 .main-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1.5rem;
+  height: 100%;
   margin-block: 5rem;
   margin-inline: 2rem;
+}
+
+@media (min-width: 567px) {
+  body {
+    height: 100vh;
+  }
+}
+
+@media (min-width: 1082px) {
+ .main-container {
+  flex-direction: row;
+  gap: 0;
+ }
 }

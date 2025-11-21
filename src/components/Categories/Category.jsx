@@ -1,4 +1,5 @@
 
+import { useState, useEffect } from 'react';
 import styles from './Category.module.css';
 import data from '/src/assets/data/data.json';
 import workIcon from '/src/assets/images/icon-work.svg';
@@ -11,36 +12,72 @@ import dottedMenu from '/src/assets/images/icon-ellipsis.svg';
 
 function Category({ selectedTimeframe }) {
 
-  const categoryColors = [
-    "hsl(15, 100%, 70%)",
-    "hsl(195, 74%, 62%)",
-    "hsl(348, 100%, 68%)",
-    "hsl(145, 58%, 55%)",
-    "hsl(264, 64%, 52%)",
-    "hsl(43, 84%, 65%)"
-  ];
+const categories = {
+  work: {
+    color: "hsl(15, 100%, 70%)",
+    icon: workIcon,
+    iconPosition: "60%",
+    iconPosDesktop: "70%"
+  },
+  play: {
+    color: "hsl(195, 74%, 62%)",
+    icon: playIcon,
+    iconPosition: "60%",
+    iconPosDesktop: "70%"
+  },
+  study: {
+    color: "hsl(348, 100%, 68%)",
+    icon: studyIcon,
+    iconPosition: "60%",
+    iconPosDesktop: "70%"
+  },
+  exercise: {
+    color: "hsl(145, 58%, 55%)",
+    icon: exerciseIcon,
+    iconPosition: "70%",
+    iconPosDesktop: "78%"
+  },
+  social: {
+    color: "hsl(264, 64%, 52%)",
+    icon: socialIcon,
+    iconPosition: "50%",
+    iconPosDesktop: "63%"
+  },
+  selfcare: {
+    color: "hsl(43, 84%, 65%)",
+    icon: selfCareIcon,
+    iconPosition: "65%",
+    iconPosDesktop: "73%"
+  }
+};
 
-  const categoryIcons = [
-    workIcon,
-    playIcon,
-    studyIcon,
-    exerciseIcon,
-    socialIcon,
-    selfCareIcon
-  ];
+const [isDesktop, setIsDesktop] = useState(false);
 
-  const iconPosition = ["60%", "60%", "60%", "70%", "50%", "65%"];
+useEffect(() => {
+  const desktopScreen = window.matchMedia("(min-width: 832px)");
+
+  const updateSize = (e) => {
+    setIsDesktop(e.matches); 
+  }
+
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  setIsDesktop(desktopScreen.matches);
+
+  desktopScreen.addEventListener('change', updateSize);
+
+  return () => desktopScreen.removeEventListener('change', updateSize);
+}, [])
 
   return(
 
       <section className={styles.cardsContainer}>
 
-        {data.map((item, index) => {
+        {data.map((item) => {
           const { title, timeframes } = item;
+          const key = title.toLowerCase().replace(/\s/g, "");
+          const customStyles = categories[key];
 
-          let currTime;
-          let prevTime;
-          let timeUnit;
+          let currTime, prevTime, timeUnit;
 
           switch(selectedTimeframe) {
             case "daily":
@@ -60,23 +97,29 @@ function Category({ selectedTimeframe }) {
               break;
           }
 
+          const iconPos = isDesktop ? customStyles.iconPosDesktop : customStyles.iconPosition;
+
           return(
-            <article className={styles.statsCard} key={title} style={{ backgroundColor: categoryColors[index] }}>
+
+            <article 
+              className={styles.statsCard} 
+              key={key} 
+              style={{ backgroundColor: customStyles.color }}>
 
               <img 
                 className={styles.categoryIcon} 
-                src={categoryIcons[index]} 
+                src={customStyles.icon} 
                 alt="category icon"
-                style={{ bottom: iconPosition[index] }} />
+                style={{ bottom: iconPos }} />
               
               <div className={styles.statsContainer}>
-                <div className={styles.currentStats}>
+                <div className={styles.prevStats}>
                   <p className={styles.category}>{title}</p>
-                  <p className={styles.currentTime}>{currTime + "hrs"}</p>
+                  <img src={dottedMenu} alt="3 dots menu" />
                 </div>
 
-                <div className={styles.prevStats}>
-                  <img src={dottedMenu} alt="3 dots menu" />
+                <div className={styles.currentStats}>
+                  <p className={styles.currentTime}>{currTime + "hrs"}</p>
                   <p className={styles.prevTime}>{timeUnit + prevTime + "hrs"}</p>
                 </div>
               </div>

@@ -14,7 +14,7 @@ function Profile({ selectedTimeframe, setSelectedTimeframe }) {
       <div className={styles.userInfo}>
         <img src={profilePic} alt="Profile pic" className={styles.profilePic} />
         <p className={styles.username}>
-          Report for <br /> <span>Jeremy Robson</span>
+          Report for <br /> <span>Jeremy <br className={styles.nameBreak} /> Robson</span>
         </p>
       </div>
 
@@ -52,7 +52,7 @@ function Profile({ selectedTimeframe, setSelectedTimeframe }) {
                 type="radio" 
                 name="time-filter"
                 value="monthly" 
-                checked={selectedTimeframe === "monhtly"}
+                checked={selectedTimeframe === "monthly"}
                 onChange={handleChange}/>
             </label>
           </li>

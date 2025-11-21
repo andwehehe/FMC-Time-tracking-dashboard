@@ -1,7 +1,7 @@
 .cardsContainer {
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 1.5rem;
 }
 
@@ -9,7 +9,9 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  flex: 1 1 15rem;
   padding-block-start: 2.3rem;
+  width: 100%;
   border-radius: var(--corners) var(--corners) 1.1rem 1.1rem;
   background-color: var(--orange-300);
   overflow: hidden;
@@ -25,8 +27,9 @@
 
 .statsContainer {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  /* justify-content: space-between;
+  align-items: flex-end; */
   z-index: 1;
   padding: 2rem;
   border-radius: var(--corners);
@@ -35,11 +38,20 @@
 
 .prevStats {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
   gap: 1.5rem;
   height: 100%;
+}
+
+.prevStats img {
+  align-self: center;
+}
+
+.currentStats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .category {
@@ -55,4 +67,35 @@
 
 .prevTime {
   font-size: 0.8rem;
+}
+
+@media (min-width: 832px) {
+  .statsCard {
+    max-width: 242.33px;
+  }
+
+  .cardsContainer {
+    max-width: 900px;
+  }
+
+  .currentStats {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .currentTime {
+    font-size: 3rem;
+    font-weight: 200;
+  }
+
+  .category {
+    font-size: 1rem;
+    margin-block-end: 1rem;
+  }
+
+  .prevStats img {
+    align-self: flex-start;
+    margin-block-start: 0.3rem;
+  }
 }
